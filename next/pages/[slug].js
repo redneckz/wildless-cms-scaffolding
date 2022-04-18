@@ -1,35 +1,29 @@
-import Head from 'next/head';
-import { getPostBySlug, getAllPosts } from '../api/blog';
 import { ContentPage } from '@redneckz/wildless-cms-uni-blocks';
-
 import '@redneckz/wildless-cms-uni-blocks/dist/common.css';
+import Head from 'next/head';
+import { ContentPageHead } from '../content-page';
+import { getAllContentPages, getContentPageBySlug } from '../content-page-repository';
 
-export default function Blog({ data }) {
+export default function Page({ data }) {
   return (
-    <div>
-      <Head>
-        <title>Blog / {data.title}</title>
+    <>
+      <ContentPageHead HeadComponent={Head} data={data}>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </ContentPageHead>
       <ContentPage data={data} />
-    </div>
+    </>
   );
 }
 
 export async function getStaticProps({ params }) {
-  const data = getPostBySlug(params.slug);
-  return {
-    props: { data },
-  };
+  const data = await getContentPageBySlug(params.slug);
+  return { props: { data } };
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts();
-
+  const pages = await getAllContentPages();
   return {
-    paths: posts.map(({ slug }) => ({
-      params: { slug },
-    })),
+    paths: pages.map(({ slug }) => ({ params: { slug } })),
     fallback: false,
   };
 }
