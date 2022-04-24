@@ -1,1 +1,0 @@
-export { ContentPageHead } from './ContentPageHead';
