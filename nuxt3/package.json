@@ -10,6 +10,6 @@
     "nuxt3": "latest"
   },
   "dependencies": {
-    "@redneckz/wildless-cms-uni-blocks": "^0.1.6"
+    "@redneckz/wildless-cms-uni-blocks": "^0.2.15"
   }
 }

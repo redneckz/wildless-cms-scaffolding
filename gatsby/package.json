@@ -15,7 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@redneckz/wildless-cms-uni-blocks": "^0.1.6",
+    "@redneckz/wildless-cms-uni-blocks": "^0.2.15",
     "autoprefixer": "^10.4.4",
     "gatsby": "^4.11.2",
     "gatsby-plugin-image": "^2.11.1",

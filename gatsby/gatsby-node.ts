@@ -1,12 +1,17 @@
-import { GraphQL } from '@redneckz/wildless-cms-uni-blocks/dist/types';
-import type { CreateSchemaCustomizationArgs } from 'gatsby';
+import type { CreatePagesArgs } from 'gatsby';
+import { ContentPageRepository } from '@redneckz/wildless-cms-uni-blocks/lib/content-page-repository';
 
-export function createSchemaCustomization({ actions }: CreateSchemaCustomizationArgs) {
-  const { createTypes } = actions;
-  createTypes(GraphQL.Block);
-  createTypes(`
-    type BlogJson implements Node @dontInfer {
-      ${GraphQL.Page}
-    }
-  `);
-}
+const { getAllContentPages } = ContentPageRepository({
+  contentDir: 'content',
+  publicDir: 'static',
+});
+
+export const createPages = async ({ actions: { createPage } }: CreatePagesArgs) => {
+  for (const contentPage of await getAllContentPages()) {
+    createPage({
+      path: contentPage.slug,
+      component: require.resolve(`./src/templates/ContentPage.js`),
+      context: { contentPage },
+    });
+  }
+};
