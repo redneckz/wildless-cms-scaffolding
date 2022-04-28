@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>Wildless CMS Next Scaffolding</h1>
+        <h1 className="text-4xl">Wildless CMS Next Scaffolding</h1>
       </main>
     </div>
   );
