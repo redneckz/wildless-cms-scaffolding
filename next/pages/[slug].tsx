@@ -1,5 +1,9 @@
 import type { ContentPageDef } from '@redneckz/wildless-cms-uni-blocks';
-import { ContentPage, ContentPageContext, ContentPageHead } from '@redneckz/wildless-cms-uni-blocks';
+import {
+  ContentPage,
+  ContentPageContext,
+  ContentPageHead,
+} from '@redneckz/wildless-cms-uni-blocks';
 import { ContentPageRepository } from '@redneckz/wildless-cms-uni-blocks/lib/content-page-repository';
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import Head from 'next/head';
@@ -13,12 +17,14 @@ const { getAllContentPages, getContentPageBySlug } = ContentPageRepository({
 const context: ContentPageContext = { useRouter };
 
 const Page: NextPage<{ data: ContentPageDef }> = ({ data }) => {
-  return <>
-    <ContentPageHead HeadComponent={Head} data={data}>
-      <link rel="icon" href="/favicon.ico" />
-    </ContentPageHead>
-    <ContentPage data={data} context={context} />
-  </>
+  return (
+    <>
+      <ContentPageHead HeadComponent={Head} data={data}>
+        <link rel="icon" href="/favicon.ico" />
+      </ContentPageHead>
+      <ContentPage data={data} context={context} />
+    </>
+  );
 };
 
 export default Page;
